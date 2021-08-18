@@ -1,5 +1,11 @@
-**Generating The Apps with AsyncAPI Generator**
+**Solace Discovery Demo**
 
+This demo is used to build a Solace broker and few applications that publish/subscribe events. It can then be used as a target environment to run a Solace Event Portal Discovery demo against.
+
+For Solace Event Portal Discovery, please refer to https://console.solace.cloud/event-discovery
+
+
+**Generating The Apps with AsyncAPI Generator**
 
 ```
 $ ag -o PatientMobileApp -p binder=solace -p view=client -p artifactId=PatientMobileApp -p groupId=sohealthy -p javaPackage=com.sohealthy.demo -p host=localhost:5555 -p username=default -p password=default -p msgVpn=default ./AsyncAPI/PatientMobileApp.yaml https://github.com/asyncapi/java-spring-cloud-stream-template.git
