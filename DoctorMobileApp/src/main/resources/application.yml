@@ -1,0 +1,35 @@
+spring:
+  cloud:
+    function:
+      definition: chatChatIdPatientIdSupplier;chatChatIdDoctorIdConsumer;alertPatientPatientIdConsumer
+    stream:
+      bindings:
+        chatChatIdPatientIdSupplier-out-0:
+          destination: 'chat/{chat_id}/{patient_id}'
+        chatChatIdDoctorIdConsumer-in-0:
+          # destination: chat/*/*
+          destination: chat/11111/54321
+          group: cgd1
+          consumer:
+            concurrency: 1
+        alertPatientPatientIdConsumer-in-0:
+          destination: alert/patient/*
+          group: cgd2
+          consumer:
+            concurrency: 1
+      binders:
+        solace-binder:
+          type: solace
+          environment:
+            solace:
+              java:
+                host: 'localhost:5555'
+                msgVpn: default
+                clientUsername: default
+                clientPassword: default
+logging:
+  level:
+    root: info
+    org:
+      springframework: info
+
